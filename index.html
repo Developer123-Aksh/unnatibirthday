@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Princess 🎀</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    background:linear-gradient(to bottom,#fff7fb,#ffe9f3,#ffffff);
+    color:#6f5360;
+}
+
+/* =========================
+   FLOATING BACKGROUND
+========================= */
+
+.bg{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    top:0;
+    left:0;
+    z-index:0;
+}
+
+.float{
+    position:absolute;
+    bottom:-120px;
+    animation:floatUp linear infinite;
+    opacity:0.8;
+}
+
+.float:nth-child(1){
+    left:5%;
+    font-size:28px;
+    animation-duration:9s;
+}
+
+.float:nth-child(2){
+    left:18%;
+    font-size:22px;
+    animation-duration:12s;
+}
+
+.float:nth-child(3){
+    left:38%;
+    font-size:30px;
+    animation-duration:10s;
+}
+
+.float:nth-child(4){
+    left:60%;
+    font-size:24px;
+    animation-duration:14s;
+}
+
+.float:nth-child(5){
+    left:80%;
+    font-size:26px;
+    animation-duration:11s;
+}
+
+.float:nth-child(6){
+    left:92%;
+    font-size:20px;
+    animation-duration:13s;
+}
+
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+
+}
+
+/* =========================
+   COUNTDOWN PAGE
+========================= */
+
+.waiting-screen{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:999;
+}
+
+.waiting-card{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.76);
+    backdrop-filter:blur(18px);
+    border-radius:35px;
+    padding:42px 25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(255,182,193,0.25);
+}
+
+.waiting-card h1{
+    font-family:'Parisienne',cursive;
+    font-size:68px;
+    color:#ff6ea5;
+}
+
+.waiting-card p{
+    margin-top:14px;
+    line-height:1.9;
+    font-size:14px;
+    color:#816571;
+}
+
+.timer{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.time-box{
+    background:white;
+    padding:18px 10px;
+    border-radius:22px;
+    box-shadow:0 8px 18px rgba(255,192,203,0.14);
+}
+
+.time-box span{
+    display:block;
+    font-size:24px;
+    font-weight:700;
+    color:#ff72aa;
+}
+
+.time-box small{
+    font-size:12px;
+    color:#9a7d88;
+}
+
+.unlock-text{
+    margin-top:25px;
+    color:#ff87b5;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page{
+    width:100%;
+    min-height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    position:relative;
+    z-index:2;
+}
+
+.login-box{
+    width:100%;
+    max-width:390px;
+    background:rgba(255,255,255,0.76);
+    backdrop-filter:blur(18px);
+    border-radius:35px;
+    padding:40px 25px;
+    text-align:center;
+    box-shadow:0 12px 40px rgba(255,182,193,0.25);
+}
+
+.login-box h1{
+    font-family:'Parisienne',cursive;
+    font-size:70px;
+    color:#ff6ea6;
+}
+
+.login-box p{
+    margin-top:12px;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.login-box input{
+    width:100%;
+    margin-top:22px;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:18px;
+    background:white;
+    text-align:center;
+    font-size:15px;
+    box-shadow:0 8px 18px rgba(255,192,203,0.14);
+}
+
+.login-box button{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#ff8fb7,#ffc5da);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-box button:hover{
+    transform:scale(1.03);
+}
+
+#error{
+    margin-top:14px;
+    color:#ff4c81;
+    font-size:14px;
+}
+
+/* =========================
+   HOME PAGE
+========================= */
+
+.home-page{
+    display:none;
+    position:relative;
+    z-index:2;
+    padding-bottom:50px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero-circle{
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:blur(14px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    box-shadow:0 15px 40px rgba(255,182,193,0.28);
+}
+
+.flower{
+    position:absolute;
+    font-size:40px;
+}
+
+.f1{
+    top:-10px;
+    left:25px;
+}
+
+.f2{
+    top:18px;
+    right:-10px;
+}
+
+.f3{
+    bottom:-5px;
+    left:-10px;
+}
+
+.f4{
+    bottom:-12px;
+    right:20px;
+}
+
+.hero h1{
+    font-family:'Parisienne',cursive;
+    font-size:76px;
+    line-height:1;
+    color:#ff6ea5;
+}
+
+.hero h2{
+    margin-top:10px;
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    letter-spacing:2px;
+    color:#876875;
+}
+
+.hero p{
+    margin-top:16px;
+    width:85%;
+    max-width:250px;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.scroll{
+    margin-top:28px;
+    color:#ff8ab5;
+    animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(6px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/* MUSIC */
+
+.song-card{
+    width:90%;
+    max-width:390px;
+    margin:0 auto;
+    background:rgba(255,255,255,0.74);
+    border-radius:32px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(255,182,193,0.22);
+}
+
+.song-card h3{
+    color:#ff74ab;
+    margin-bottom:12px;
+    font-family:'Playfair Display',serif;
+}
+
+audio{
+    width:100%;
+}
+
+/* LETTER */
+
+.letter{
+    width:90%;
+    max-width:420px;
+    margin:30px auto 0;
+    padding:30px;
+    border-radius:32px;
+    background:rgba(255,255,255,0.75);
+    box-shadow:0 10px 30px rgba(255,182,193,0.22);
+    line-height:2;
+    text-align:center;
+    font-size:15px;
+}
+
+/* PHOTOS */
+
+.photo-title{
+    margin-top:40px;
+    text-align:center;
+    font-family:'Parisienne',cursive;
+    font-size:60px;
+    color:#ff75ac;
+}
+
+.photos{
+    width:92%;
+    max-width:430px;
+    margin:20px auto 0;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.photo{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    box-shadow:0 12px 25px rgba(255,182,193,0.25);
+}
+
+.photo img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.photo:hover img{
+    transform:scale(1.08);
+}
+
+.caption{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:12px;
+    background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
+    color:white;
+    font-size:13px;
+}
+
+/* FINAL SURPRISE */
+
+.final-box{
+    width:90%;
+    max-width:420px;
+    margin:40px auto 0;
+    padding:34px;
+    border-radius:35px;
+    background:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(255,238,245,0.8));
+    text-align:center;
+    line-height:2;
+    color:#ff6fa7;
+    box-shadow:0 12px 35px rgba(255,182,193,0.28);
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.02);
+    }
+
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#ff89b6;
+    font-size:14px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+    .hero-circle{
+        width:300px;
+        height:300px;
+    }
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .photo img{
+        height:180px;
+    }
+
+    .timer{
+        gap:8px;
+    }
+
+    .time-box{
+        padding:14px 6px;
+    }
+
+    .time-box span{
+        font-size:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- FLOATING BACKGROUND -->
+
+<div class="bg">
+
+    <div class="float">🌷</div>
+    <div class="float">✨</div>
+    <div class="float">🌸</div>
+    <div class="float">🤍</div>
+    <div class="float">💮</div>
+    <div class="float">🩷</div>
+
+</div>
+
+<!-- COUNTDOWN SCREEN -->
+
+<div class="waiting-screen" id="waitingScreen">
+
+    <div class="waiting-card">
+
+        <h1>Almost Time 🎀</h1>
+
+        <p>
+            A tiny little birthday world is waiting for her ✨<br>
+            It will open exactly at 12:00 AM on her special day 🤍
+        </p>
+
+        <div class="timer">
+
+            <div class="time-box">
+                <span id="days">0</span>
+                <small>Days</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">0</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">0</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">0</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+        <div class="unlock-text">
+            Unlocking on 15 June 2026 at 12:00 AM 💖
+        </div>
+
+    </div>
+
+</div>
+
+<!-- LOGIN PAGE -->
+
+<div class="login-page" id="loginPage">
+
+    <div class="login-box">
+
+        <h1>Hello Princess 🎀</h1>
+
+        <p>
+            Your birthday surprise is finally ready ✨<br>
+            Enter your birthdate to open it 💕
+        </p>
+
+        <input type="text" id="password" placeholder="DD/MM/YYYY">
+
+        <button onclick="openGift()">
+            Open My Surprise 💌
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</div>
+
+<!-- HOME PAGE -->
+
+<div class="home-page" id="homePage">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-circle">
+
+            <div class="flower f1">🌷</div>
+            <div class="flower f2">🌸</div>
+            <div class="flower f3">🤍</div>
+            <div class="flower f4">💮</div>
+
+            <h1>Unnati</h1>
+
+            <h2>HAPPY BIRTHDAY</h2>
+
+            <p>
+                You deserve soft songs,
+                pretty flowers,
+                peaceful sunsets
+                and all the happiness in the world 🌷
+            </p>
+
+        </div>
+
+        <div class="scroll">
+            scroll down ↓
+        </div>
+
+    </section>
+
+    <!-- SONG -->
+
+    <div class="song-card">
+
+        <h3>🎶 A Song That Feels Like You</h3>
+
+        <!-- ADD YOUR SONG -->
+        <!-- INTRO SONG -->
+        <audio id="introSong" preload="auto">
+            <source src="./ytmp3free.cc_weirdest-song-ever-youtubemp3free.org.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- BIRTHDAY SONG -->
+        <audio id="birthdaySong" preload="auto" loop>
+            <source src="./ytmp3free.cc_frank-ocean-pink-white-lyrics-youtubemp3free.org.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+ 
+    <!-- LETTER -->
+
+    <div class="letter">
+
+        “I genuinely don’t think you realise
+        how effortlessly you make people smile 🌸<br><br>
+
+        You have this really soft energy about you,
+        like pink skies after rain
+        or flowers blooming quietly ✨<br><br>
+
+        I hope this year gives you
+        peace, happiness,
+        late night laughs,
+        beautiful memories
+        and everything your heart deserves 🤍”
+
+    </div>
+
+    <!-- PHOTOS -->
+
+    <div class="photo-title">
+        Pretty Memories ✨
+    </div>
+
+    <div class="photos">
+
+        <div class="photo">
+            <img src="./image1.jpg">
+            <div class="caption">your smile >>> 🌸</div>
+        </div>
+
+        <div class="photo">
+            <img src="./image2.jpg">
+            <div class="caption">your laugh >>> 🌸</div>
+        </div>
+
+        <div class="photo">
+            <img src="./image3.jpg">
+            <div class="caption">softest soul 💕</div>
+        </div>
+
+        <div class="photo">
+            <img src="./image4.jpg">ss
+            <div class="caption">main character energy ✨</div>
+        </div>
+
+        <div class="photo">
+            <img src="./image5.jpg">
+            <div class="caption">pretty human 🤍</div>
+        </div>
+
+    </div>
+
+    <!-- FINAL SURPRISE -->
+
+    <div class="final-box">
+
+        🌷 One Last Surprise Waiting For You 🌷<br><br>
+
+        Now come to the balcony and look at the sky... ✨<br>
+
+        Your birthday fireworks are waiting for you 🎆🤍
+
+    </div>
+
+    <div class="footer">
+        made with love & pink skies 💗
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   SETTINGS
+========================= */
+
+const unlockDate =
+new Date("2026-06-15T00:00:00");
+
+const correctPassword =
+"15/06/2004";
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const waitingScreen =
+document.getElementById("waitingScreen");
+
+const loginPage =
+document.getElementById("loginPage");
+
+const introSong =
+document.getElementById("introSong");
+
+const birthdaySong =
+document.getElementById("birthdaySong");
+
+/* =========================
+   MUSIC SYSTEM
+========================= */
+
+function startBirthdayMusic(){
+
+    introSong.currentTime = 0;
+
+    introSong.play()
+    .then(() => {
+
+        introSong.onended = () => {
+
+            birthdaySong.currentTime = 0;
+
+            birthdaySong.play()
+            .catch(err => console.log(err));
+
+        };
+
+    })
+    .catch(err => console.log(err));
+
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+function updateCountdown(){
+
+    const now = new Date();
+
+    const difference =
+    unlockDate - now;
+
+    if(difference <= 0){
+
+        waitingScreen.style.display = "none";
+
+        loginPage.style.display = "flex";
+
+        return;
+
+    }
+
+    const days =
+    Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    const hours =
+    Math.floor(
+        (difference % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes =
+    Math.floor(
+        (difference % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds =
+    Math.floor(
+        (difference % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("days").innerHTML =
+    days;
+
+    document.getElementById("hours").innerHTML =
+    hours;
+
+    document.getElementById("minutes").innerHTML =
+    minutes;
+
+    document.getElementById("seconds").innerHTML =
+    seconds;
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+/* =========================
+   LOGIN
+========================= */
+
+function openGift(){
+
+    const password =
+    document.getElementById("password").value.trim();
+
+    const error =
+    document.getElementById("error");
+
+    if(password === correctPassword){
+
+        loginPage.style.display = "none";
+
+        document.getElementById("homePage")
+        .style.display = "block";
+
+        startBirthdayMusic();
+
+    }
+
+    else{
+
+        error.innerHTML =
+        "That birthdate doesn't match 💔";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
